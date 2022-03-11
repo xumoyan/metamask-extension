@@ -6,12 +6,14 @@
   }
 
   @media screen and (min-width: $break-large) {
-    width: 800px;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 48px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
   ul {
