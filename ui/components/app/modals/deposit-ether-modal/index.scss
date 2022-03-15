@@ -52,7 +52,7 @@
   }
 
   &__logo {
-    height: 60px;
+    height: 40px;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -60,6 +60,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &--lg {
+      height: 60px;
+    }
+
+    @media screen and (min-width: $break-large) {
+      height: 60px;
+    }
   }
 
   &__buy-row {
