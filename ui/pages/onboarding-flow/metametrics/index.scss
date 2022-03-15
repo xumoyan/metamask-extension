@@ -16,6 +16,13 @@
     padding-right: 40px;
   }
 
+  &__desc {
+    @media screen and (min-width: $break-large) {
+      margin-inline-start: 77px;
+      margin-inline-end: 73px;
+    }
+  }
+
   ul {
     margin: 24px 0 0 0;
 
