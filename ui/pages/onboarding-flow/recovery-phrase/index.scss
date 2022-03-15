@@ -22,13 +22,20 @@
 
   &__chips {
     display: grid;
-    grid-template-columns: 166px 166px 166px;
     justify-items: center;
     align-items: center;
     row-gap: 16px;
 
-    @media screen and (max-width: $break-small) {
+    @media screen and (max-width: 460px) {
+      grid-template-columns: 198px;
+    }
+
+    @media screen and (min-width: 460px) and (max-width: $break-small) {
       grid-template-columns: 181px 181px;
+    }
+
+    @media screen and (min-width: $break-large) {
+      grid-template-columns: 166px 166px 166px;
     }
 
     &--hidden {
@@ -93,7 +100,7 @@
     &--button {
       @media screen and (min-width: $break-large) {
         width: 50%;
-        padding: 20px;
+        align-self: center;
       }
     }
 
@@ -106,6 +113,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+        @media screen and (min-width: $break-large) {
+          justify-content: space-around;
+        }
       }
 
       &__button {

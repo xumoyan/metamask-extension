@@ -23,7 +23,6 @@
 
     @media screen and (min-width: $break-large) {
       margin-top: 40px;
-      margin-bottom: 170px;
     }
   }
 
@@ -33,7 +32,11 @@
 
   &__form {
     @media screen and (min-width: $break-large) {
-      padding: 0 198px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 327px;
     }
 
 
@@ -53,6 +56,10 @@
 
     .form-field__input {
       height: 50px;
+
+      @media screen and (min-width: $break-large) {
+        width: 327px;
+      }
     }
   }
 }
