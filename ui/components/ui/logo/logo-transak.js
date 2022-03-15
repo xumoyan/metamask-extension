@@ -66,10 +66,10 @@ const LogoTransak = ({ width = '100%', className }) => {
           y2="436.843"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset="0.1304" stop-color="#3495F7" />
-          <stop offset="0.3063" stop-color="#2B87F2" />
-          <stop offset="0.6392" stop-color="#1461E5" />
-          <stop offset="0.7232" stop-color="#0E57E1" />
+          <stop offset="0.1304" stopColor="#3495F7" />
+          <stop offset="0.3063" stopColor="#2B87F2" />
+          <stop offset="0.6392" stopColor="#1461E5" />
+          <stop offset="0.7232" stopColor="#0E57E1" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9_13"
@@ -79,9 +79,9 @@ const LogoTransak = ({ width = '100%', className }) => {
           y2="258.803"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#3495F7" />
-          <stop offset="0.4939" stop-color="#1461E5" />
-          <stop offset="1" stop-color="#0E57E1" />
+          <stop stopColor="#3495F7" />
+          <stop offset="0.4939" stopColor="#1461E5" />
+          <stop offset="1" stopColor="#0E57E1" />
         </linearGradient>
       </defs>
     </svg>
