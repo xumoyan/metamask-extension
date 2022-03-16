@@ -109,6 +109,35 @@ export function createNewVaultAndRestore(password, seed) {
   };
 }
 
+export function refreshAccounts() {
+  return (dispatch) => {
+    dispatch(showLoadingIndication());
+    log.debug(`background.refreshAccounts`);
+    let accounts;
+    return new Promise((resolve, reject) => {
+      background.refreshAccounts((err, _accounts) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        accounts = _accounts;
+        resolve();
+      });
+    })
+      .then(() => dispatch(unMarkPasswordForgotten()))
+      .then(() => {
+        dispatch(showAccountsPage());
+        dispatch(hideLoadingIndication());
+        return accounts;
+      })
+      .catch((err) => {
+        dispatch(displayWarning(err.message));
+        dispatch(hideLoadingIndication());
+        return Promise.reject(err);
+      });
+  };
+}
+
 export function createNewVaultAndGetSeedPhrase(password) {
   return async (dispatch) => {
     dispatch(showLoadingIndication());

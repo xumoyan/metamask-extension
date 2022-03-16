@@ -93,7 +93,6 @@
 
   &__header {
     display: flex;
-    flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
   }
@@ -114,6 +113,10 @@
     &:active {
       background-color: rgba($dusty-gray, 0.1);
     }
+  }
+
+  &__refresh-button {
+    color: var(--Blue-400);
   }
 
   &__item-icon {

@@ -1514,6 +1514,7 @@ export default class MetamaskController extends EventEmitter {
       setLocked: this.setLocked.bind(this),
       createNewVaultAndKeychain: this.createNewVaultAndKeychain.bind(this),
       createNewVaultAndRestore: this.createNewVaultAndRestore.bind(this),
+      refreshAccounts: this.refreshAccounts.bind(this),
       exportAccount: keyringController.exportAccount.bind(keyringController),
 
       // txController
@@ -1909,6 +1910,69 @@ export default class MetamaskController extends EventEmitter {
       this.preferencesController.setAddresses(accounts);
       this.selectFirstIdentity();
       return vault;
+    } finally {
+      releaseLock();
+    }
+  }
+
+  /**
+   * Restore accounts with balance.
+   */
+  async refreshAccounts() {
+    const releaseLock = await this.createVaultMutex.acquire();
+    try {
+      let accounts, lastBalance;
+
+      const { keyringController } = this;
+
+      // clear known identities
+      this.preferencesController.setAddresses([]);
+
+      // clear permissions
+      this.permissionController.clearState();
+
+      const ethQuery = new EthQuery(this.provider);
+      accounts = await keyringController.getAccounts();
+      lastBalance = await this.getBalance(
+        accounts[accounts.length - 1],
+        ethQuery,
+      );
+
+      const primaryKeyring = keyringController.getKeyringsByType(
+        'HD Key Tree',
+      )[0];
+      if (!primaryKeyring) {
+        throw new Error('MetamaskController - No HD Key Tree found');
+      }
+
+      // return all accounts till zero balance account
+      while (lastBalance !== '0x0') {
+        await keyringController.addNewAccount(primaryKeyring);
+        accounts = await keyringController.getAccounts();
+        lastBalance = await this.getBalance(
+          accounts[accounts.length - 1],
+          ethQuery,
+        );
+      }
+
+      // remove extra zero balance account potentially created from seeking ahead
+      if (accounts.length > 1 && lastBalance === '0x0') {
+        await this.removeAccount(accounts[accounts.length - 1]);
+        accounts = await keyringController.getAccounts();
+      }
+
+      // This must be set as soon as possible to communicate to the
+      // keyring's iframe and have the setting initialized properly
+      // Optimistically called to not block Metamask login due to
+      // Ledger Keyring GitHub downtime
+      const transportPreference = this.preferencesController.getLedgerTransportPreference();
+      this.setLedgerTransportPreference(transportPreference);
+
+      // set new identities
+      this.preferencesController.setAddresses(accounts);
+      this.selectFirstIdentity();
+
+      return accounts;
     } finally {
       releaseLock();
     }
