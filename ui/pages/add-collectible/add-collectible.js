@@ -97,7 +97,7 @@ export default function AddCollectible() {
           {isMainnet &&
           !useCollectibleDetection &&
           !collectibleDetectionNoticeDismissed ? (
-            <CollectiblesDetectionNotice />
+            <CollectiblesDetectionNotice homeScreenTab={false} />
           ) : null}
           {collectibleAddFailed && (
             <ActionableMessage

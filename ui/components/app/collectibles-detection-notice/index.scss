@@ -17,9 +17,15 @@
       }
     }
 
-    & &__data {
+    & &__data-homeScreen {
       @media screen and (min-width: 1439px) {
         display: inline-flex;
+      }
+    }
+
+    & &__data-addScreen {
+      @media screen and (min-width: 1439px) {
+        display: inline-block;
       }
     }
 
@@ -38,7 +44,7 @@
     }
 
     & &__settings-link,
-    & &__dismiss-link {
+    & &__dismiss-link-homeScreen {
       @include H7;
 
       font-weight: bold;
@@ -49,12 +55,16 @@
       min-width: 100%;
     }
 
-    & &__dismiss-link {
+    & &__dismiss-link-homeScreen {
       color: var(--color-text-default);
 
       @media screen and (max-width: 1439px) {
         display: none;
       }
+    }
+
+    & &__dismiss-link-addScreen {
+      display: none;
     }
   }
 }

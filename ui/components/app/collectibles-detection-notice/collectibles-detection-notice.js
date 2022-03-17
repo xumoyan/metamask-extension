@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { useHistory } from 'react-router-dom';
 import Box from '../../ui/box';
 import Dialog from '../../ui/dialog';
@@ -16,7 +18,7 @@ import Button from '../../ui/button';
 import { EXPERIMENTAL_ROUTE } from '../../../helpers/constants/routes';
 import { setCollectiblesDetectionNoticeDismissed } from '../../../store/actions';
 
-export default function CollectiblesDetectionNotice() {
+export default function CollectiblesDetectionNotice({ homeScreenTab }) {
   const t = useI18nContext();
   const history = useHistory();
 
@@ -47,7 +49,12 @@ export default function CollectiblesDetectionNotice() {
             >
               {t('newNFTsDetected')}
             </Typography>
-            <Box className="collectibles-detection-notice__message__data">
+            <Box
+              className={classnames({
+                'collectibles-detection-notice__message__data-homeScreen': homeScreenTab,
+                'collectibles-detection-notice__message__data-addScreen': !homeScreenTab,
+              })}
+            >
               <Typography
                 color={COLORS.TEXT_DEFAULT}
                 align={TEXT_ALIGN.LEFT}
@@ -58,7 +65,9 @@ export default function CollectiblesDetectionNotice() {
               <Box
                 display={DISPLAY.INLINE_FLEX}
                 flexDirection={FLEX_DIRECTION.ROW}
-                className="collectibles-detection-notice__message__fullscreen-links"
+                className={classnames({
+                  'collectibles-detection-notice__message__fullscreen-links': homeScreenTab,
+                })}
               >
                 <Button
                   type="link"
@@ -72,7 +81,10 @@ export default function CollectiblesDetectionNotice() {
                 <Button
                   type="link"
                   onClick={() => setCollectiblesDetectionNoticeDismissed()}
-                  className="collectibles-detection-notice__message__dismiss-link"
+                  className={classnames({
+                    'collectibles-detection-notice__message__dismiss-link-homeScreen': homeScreenTab,
+                    'collectibles-detection-notice__message__dismiss-link-addScreen': !homeScreenTab,
+                  })}
                 >
                   {t('dismiss')}
                 </Button>
@@ -84,3 +96,7 @@ export default function CollectiblesDetectionNotice() {
     </Box>
   );
 }
+
+CollectiblesDetectionNotice.propTypes = {
+  homeScreenTab: PropTypes.bool,
+};

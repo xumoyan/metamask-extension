@@ -70,7 +70,7 @@ export default function CollectiblesTab({ onAddNFT }) {
           {isMainnet &&
           !useCollectibleDetection &&
           !collectibleDetectionNoticeDismissed ? (
-            <CollectiblesDetectionNotice />
+            <CollectiblesDetectionNotice homeScreenTab />
           ) : null}
           <Box padding={12}>
             <Box justifyContent={JUSTIFY_CONTENT.CENTER}>
