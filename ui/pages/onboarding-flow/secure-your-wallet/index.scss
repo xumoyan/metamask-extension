@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: 1000px;
+  max-width: 600px;
 
   @media screen and (min-width: $break-large) {
     margin-top: 40px;
@@ -20,8 +20,14 @@
   }
 
   &__video {
-    @media screen and (max-width: $break-small) {
+    max-width: 496px;
+
+    @media screen and (min-width: 461px) and (max-width: $break-small) {
       max-width: 396px;
+    }
+
+    @media screen and (min-width: 350px) and (max-width: 460px) {
+      max-width: 296px;
     }
   }
 

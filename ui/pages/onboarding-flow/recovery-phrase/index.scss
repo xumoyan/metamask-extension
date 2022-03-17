@@ -1,5 +1,9 @@
 .recovery-phrase {
   max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
 
   @media screen and (min-width: $break-large) {
     margin-top: 40px;
