@@ -85,7 +85,8 @@ export default function ConfirmRecoveryPhrase({ secretRecoveryPhrase = '' }) {
         <Button
           data-testid="recovery-phrase-confirm"
           type="primary"
-          className="recovery-phrase__footer--button"
+          large
+          className="recovery-phrase__footer--button__confirm"
           onClick={() => {
             history.push(ONBOARDING_COMPLETION_ROUTE);
           }}
