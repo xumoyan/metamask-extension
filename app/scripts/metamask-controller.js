@@ -1506,12 +1506,6 @@ export default class MetamaskController extends EventEmitter {
       updateCollectibleDropDownState: appStateController.updateCollectibleDropDownState.bind(
         appStateController,
       ),
-      setTokenDetectionNoticeDismissed: appStateController.setTokenDetectionNoticeDismissed.bind(
-        appStateController,
-      ),
-      setTokenDetectionWarningDismissed: appStateController.setTokenDetectionWarningDismissed.bind(
-        appStateController,
-      ),
       // EnsController
       tryReverseResolveAddress: ensController.reverseResolveAddress.bind(
         ensController,
